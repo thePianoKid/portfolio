@@ -28,8 +28,8 @@
       <div id="torus" role="img" aria-label="Animated ASCII torus visualizer"></div>
     </main>
     <footer class="page__footer">
-      <span class="page__white-bg">GITHUB</span>
-      <span class="page__white-bg">Inspired by a K. A. Miller design</span>
+      <span class="footer__link"><a href="https://github.com/thePianoKid/portfolio" class="link" target="_blank">GITHUB</a></span>
+      <span class="footer__link">Inspired by a <a href="https://x.com/kyleanthony" class="link" target="_blank">K. A. Miller</a> design</span>
     </footer>
     <script type="module" src="/main.js" data-turbo-track="reload"></script>
   </body>
