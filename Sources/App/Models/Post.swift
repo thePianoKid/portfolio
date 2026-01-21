@@ -1,7 +1,8 @@
 import Fluent
 import Foundation
+import Vapor
 
-final class Post: Model, @unchecked Sendable {
+final class Post: Model, @unchecked Sendable, Content {
     static let schema = "post"
 
     @ID(key: .id)
