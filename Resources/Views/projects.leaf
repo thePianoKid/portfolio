@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portfolio Gallery</title>
+    <link rel="stylesheet" href="/main.css" data-turbo-track="reload">
+  </head>
+  <body class="projects-page">
+    <main class="projects-shell">
+      <header class="projects-header">
+        <h1>Portfolio</h1>
+        <a href="/" class="projects-back">← Back to main menu</a>
+      </header>
+      <section class="projects-grid">
+        #for(project in projects):
+          <article class="gallery-card gallery-card--#(project.layout)">
+            <span>#(project.title)</span>
+          </article>
+        #endfor
+      </section>
+    </main>
+    <script type="module" src="/main.js" data-turbo-track="reload"></script>
+  </body>
+</html>
