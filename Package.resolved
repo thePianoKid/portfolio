@@ -1,5 +1,5 @@
 {
-  "originHash" : "55115f18a9527dad8813af1619665b78ba74419c2efc45acde4d26c3eb2adc7b",
+  "originHash" : "32006ce764508d6ac91b6f71282f87164f1a1a9482d9b4f4f778ae90f522caac",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -53,6 +53,24 @@
       "state" : {
         "revision" : "59bff45a41d1ece1950bb8a6e0006d88c1fb6e69",
         "version" : "2.12.0"
+      }
+    },
+    {
+      "identity" : "leaf",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/leaf.git",
+      "state" : {
+        "revision" : "b70a6108e4917f338f6b8848407bf655aa7e405f",
+        "version" : "4.5.1"
+      }
+    },
+    {
+      "identity" : "leaf-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/leaf-kit.git",
+      "state" : {
+        "revision" : "0c325fc46d42455914abd0105e88fe4561fc31a8",
+        "version" : "1.14.0"
       }
     },
     {
