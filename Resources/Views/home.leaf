@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="/main.css" data-turbo-track="reload">
   </head>
   <body class="page page--brutalist">
-    <div class="page__sidebar">Made in Canada</div>
+    <div class="page__sidebar">
+      <img src="/Images/maple-leaf.png" alt="Maple leaf" class="sidebar__leaf">
+      <span>Made in Canada</span>
+    </div>
 
     <header class="brutal-header">
       <div class="brand">GJ Braden</div>
