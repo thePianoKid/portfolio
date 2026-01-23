@@ -1,25 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Portfolio Gallery</title>
+    <title>#(title)</title>
+    <link rel="stylesheet" href="/projects.css" data-turbo-track="reload">
     <link rel="stylesheet" href="/main.css" data-turbo-track="reload">
-  </head>
-  <body class="projects-page">
-    <main class="projects-shell">
-      <header class="projects-header">
-        <h1>Portfolio</h1>
-        <a href="/" class="projects-back">← Back to main menu</a>
-      </header>
-      <section class="projects-grid">
-        #for(project in projects):
-          <article class="gallery-card gallery-card--#(project.layout)">
-            <span>#(project.title)</span>
-          </article>
-        #endfor
-      </section>
-    </main>
-    <script type="module" src="/main.js" data-turbo-track="reload"></script>
-  </body>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Portfolio</h1>
+        <a href="/" class="back-link">
+            <span class="arrow">←</span> Back to main menu
+        </a>
+
+        <div class="portfolio-grid">
+            <div class="project-card" data-description="This is a short description of the project. This box follows the cursor around.">
+                <span class="project-title">train.ai</span>
+            </div>
+
+            <div class="project-card" data-description="This is a short description of the project. This box follows the cursor around.">
+                <span class="project-title">Retell</span>
+            </div>
+
+            <div class="project-card" data-description="This is a short description of the project. This box follows the cursor around.">
+                <span class="project-title">Fitness app</span>
+            </div>
+
+            <div class="project-card" data-description="This is a short description of the project. This box follows the cursor around.">
+                <span class="project-title">Notion x Shopify</span>
+            </div>
+        </div>
+
+        <div class="tooltip" id="tooltip">
+            This is a short description of the project. This box follows the cursor around.
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>

@@ -22,8 +22,6 @@ body {
   font-family: 'Fira Code', monospace;
   font-variant-ligatures: normal;
   letter-spacing: 0.04em;
-  overflow: hidden;
-  height: 100%;
 }
 
 a {
@@ -40,6 +38,8 @@ a {
   flex-direction: column;
   justify-content: flex-start;
   gap: 3rem;
+  overflow: hidden;
+  height: 100%;
 }
 
 .page__corner-icon {

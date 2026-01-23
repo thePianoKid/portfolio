@@ -2,13 +2,14 @@ import Vapor
 import Fluent
 
 struct ProjectsGalleryController: RouteCollection {
-    func boot(routes: RoutesBuilder) throws {
-        routes.get("projects", "gallery", use: gallery)
+    func boot(routes: any RoutesBuilder) throws {
+        routes.get("projects", use: projectsGallery)
     }
 
-    private func gallery(req: Request) async throws -> View {
+    private func projectsGallery(req: Request) async throws -> View {
         let projects = try await Project.query(on: req.db).all()
         let layouts: [GalleryProject.Layout] = [.tallLeft, .wideTopRight, .squareBottomRight, .tallBottomLeft]
+        // TODO: Query DB to get these titles.
         let placeholders = ["train.ai", "Retell", "Notion x Shopify", "Fitness app"]
 
         var cards: [GalleryProject] = []

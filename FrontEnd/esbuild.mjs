@@ -6,6 +6,7 @@ try {
         entryPoints: [
             'FrontEnd/main.js',
             'FrontEnd/main.scss',
+            'FrontEnd/projects.scss',
         ],
         outdir: 'Public',
         bundle: true,
