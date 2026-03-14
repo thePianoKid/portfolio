@@ -15,7 +15,12 @@
 
 x-shared_environment: &shared_environment
   LOG_LEVEL: ${LOG_LEVEL:-debug}
-  
+  DATABASE_HOST: db
+  DATABASE_PORT: 5432
+  DATABASE_USERNAME: vapor
+  DATABASE_PASSWORD: vapor
+  DATABASE_NAME: vapor
+
 services:
   app:
     image: portfolio-api:latest
@@ -23,7 +28,30 @@ services:
       context: .
     environment:
       <<: *shared_environment
+    depends_on:
+      db:
+        condition: service_healthy
     ports:
       - '8080:8080'
     # user: '0' # uncomment to run as root for testing purposes even though Dockerfile defines 'vapor' user.
     command: ["serve", "--env", "production", "--hostname", "0.0.0.0", "--port", "8080"]
+
+  db:
+    image: postgres:16-alpine
+    volumes:
+      - db_data:/var/lib/postgresql/data/pgdata
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_USER: vapor
+      POSTGRES_PASSWORD: vapor
+      POSTGRES_DB: vapor
+    ports:
+      - '5432:5432'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vapor -d vapor"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  db_data:
