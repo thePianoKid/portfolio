@@ -17,27 +17,27 @@
         <div class="fib-canvas">
             #for(project in projects):
             #if(isFirst):
-            <div class="square s4 project-card" data-description="#(project.description)">
+            <a href="/projects/#(project.id)" class="square s4 project-card" data-description="#(project.description)">
                 <div class="quarter-circle c4"></div>
-                <a href="/projects/#(project.id)" class="project-title">#(project.title)</a>
-            </div>
+                <span class="project-title">#(project.title)</span>
+            </a>
             <div class="fib-right">
             #elseif(index == 1):
-                <div class="square s3 project-card" data-description="#(project.description)">
+                <a href="/projects/#(project.id)" class="square s3 project-card" data-description="#(project.description)">
                     <div class="quarter-circle c3"></div>
-                    <a href="/projects/#(project.id)" class="project-title">#(project.title)</a>
-                </div>
+                    <span class="project-title">#(project.title)</span>
+                </a>
                 <div class="fib-bottom">
             #elseif(index == 2):
-                    <div class="square s2 project-card" data-description="#(project.description)">
+                    <a href="/projects/#(project.id)" class="square s2 project-card" data-description="#(project.description)">
                         <div class="quarter-circle c2"></div>
-                        <a href="/projects/#(project.id)" class="project-title">#(project.title)</a>
-                    </div>
+                        <span class="project-title">#(project.title)</span>
+                    </a>
             #elseif(index == 3):
-                    <div class="square s1 project-card" data-description="#(project.description)">
+                    <a href="/projects/#(project.id)" class="square s1 project-card" data-description="#(project.description)">
                         <div class="quarter-circle"></div>
-                        <a href="/projects/#(project.id)" class="project-title">#(project.title)</a>
-                    </div>
+                        <span class="project-title">#(project.title)</span>
+                    </a>
                 </div>
             </div>
             #endif
