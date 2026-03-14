@@ -23,25 +23,25 @@ final class Project : Model, @unchecked Sendable, Content {
     @Field(key: "image")
     var image: String
     
-    @Field(key: "live_project")
-    var liveProject: URL
-    
-    @Field(key: "github_link")
-    var githubLink: URL
-    
-    @Field(key: "video_demo")
-    var videoDemo: URL
-    
+    @OptionalField(key: "live_project")
+    var liveProject: URL?
+
+    @OptionalField(key: "github_link")
+    var githubLink: URL?
+
+    @OptionalField(key: "video_demo")
+    var videoDemo: URL?
+
     init() {}
-    
+
     init(
         id: UUID? = nil,
         title: String,
         description: String,
         image: String,
-        liveProject: URL,
-        githubLink: URL,
-        videoDemo: URL
+        liveProject: URL? = nil,
+        githubLink: URL? = nil,
+        videoDemo: URL? = nil
     ) {
         self.id = id
         self.title = title

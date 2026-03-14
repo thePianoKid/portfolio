@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>#(project.title)</title>
+    <link rel="stylesheet" href="/projects.css" data-turbo-track="reload">
+</head>
+<body>
+    <div class="container detail">
+        <h1 class="title">#(project.title)</h1>
+        <a href="/projects" class="back-link">
+            <span class="arrow">&larr;</span> Back to portfolio
+        </a>
+
+        <div class="detail-image">
+            <img src="#(project.image)" alt="#(project.title)">
+        </div>
+
+        <div class="detail-links">
+            #if(project.liveProject):
+            <a href="#(project.liveProject)" class="detail-link" target="_blank">LIVE PROJECT</a>
+            #endif
+            #if(project.githubLink):
+            <a href="#(project.githubLink)" class="detail-link" target="_blank">GITHUB</a>
+            #endif
+            #if(project.videoDemo):
+            <a href="#(project.videoDemo)" class="detail-link" target="_blank">VIDEO DEMO</a>
+            #endif
+        </div>
+
+        <div class="detail-description">
+            #(project.description)
+        </div>
+    </div>
+</body>
+</html>

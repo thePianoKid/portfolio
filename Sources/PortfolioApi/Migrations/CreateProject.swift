@@ -8,7 +8,6 @@
 import Fluent
 
 struct CreateProject: AsyncMigration {
-    // Prepares the database for storing Galaxy models.
     func prepare(on database: any Database) async throws {
         try await database.schema(Project.schema)
             .id()

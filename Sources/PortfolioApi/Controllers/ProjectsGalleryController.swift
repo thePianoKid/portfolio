@@ -4,22 +4,51 @@ import Fluent
 struct ProjectsGalleryController: RouteCollection {
     func boot(routes: any RoutesBuilder) throws {
         routes.get("projects", use: projectsGallery)
+        routes.get("projects", ":projectID", use: projectDetail)
     }
 
     private func projectsGallery(req: Request) async throws -> View {
-        let projects = try await Project.query(on: req.db).all()
-        let layouts: [GalleryProject.Layout] = [.tallLeft, .wideTopRight, .squareBottomRight, .tallBottomLeft]
-        // TODO: Query DB to get these titles.
-        let placeholders = ["train.ai", "Retell", "Notion x Shopify", "Fitness app"]
+        let featuredIDs = try FeaturedProjectsConfig.loadFeaturedIDs(from: req.application)
+        let projects = try await Project.query(on: req.db)
+            .filter(\.$id ~~ featuredIDs)
+            .all()
 
-        var cards: [GalleryProject] = []
-        for index in 0..<layouts.count {
-            let title = projects.indices.contains(index) ? projects[index].title : placeholders[index]
-            cards.append(GalleryProject(title: title, layout: layouts[index]))
+        // Preserve the config ordering
+        let orderedProjects = featuredIDs.compactMap { id in
+            projects.first(where: { $0.id == id })
+        }
+
+        let cards = orderedProjects.map { project in
+            GalleryProject(
+                id: project.id?.uuidString ?? "",
+                title: project.title,
+                description: project.description
+            )
         }
 
         let context = ProjectsGalleryContext(projects: cards)
         return try await req.view.render("projects", context)
+    }
+
+    private func projectDetail(req: Request) async throws -> View {
+        guard let projectID = req.parameters.get("projectID", as: UUID.self) else {
+            throw Abort(.badRequest)
+        }
+        guard let project = try await Project.find(projectID, on: req.db) else {
+            throw Abort(.notFound)
+        }
+
+        let detail = ProjectDetailData(
+            title: project.title,
+            description: project.description,
+            image: project.image,
+            liveProject: project.liveProject?.absoluteString,
+            githubLink: project.githubLink?.absoluteString,
+            videoDemo: project.videoDemo?.absoluteString
+        )
+
+        let context = ProjectDetailContext(project: detail)
+        return try await req.view.render("project-detail", context)
     }
 }
 
@@ -28,13 +57,20 @@ private struct ProjectsGalleryContext: Encodable {
 }
 
 private struct GalleryProject: Encodable {
-    enum Layout: String, Encodable {
-        case tallLeft = "tall-left"
-        case wideTopRight = "wide-top-right"
-        case squareBottomRight = "square-bottom-right"
-        case tallBottomLeft = "tall-bottom-left"
-    }
-
+    let id: String
     let title: String
-    let layout: Layout
+    let description: String
+}
+
+private struct ProjectDetailContext: Encodable {
+    let project: ProjectDetailData
+}
+
+private struct ProjectDetailData: Encodable {
+    let title: String
+    let description: String
+    let image: String
+    let liveProject: String?
+    let githubLink: String?
+    let videoDemo: String?
 }

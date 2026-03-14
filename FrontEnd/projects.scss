@@ -2,7 +2,7 @@
 
 $page-pad: clamp(8rem, 20vw, 24rem);
 $line-color: #fff;
-$unit: clamp(80px, 12vw, 150px);
+$unit: clamp(80px, 12vw, 280px);
 
 * {
     margin: 0;
@@ -15,7 +15,7 @@ body {
     color: #fff;
     font-family: 'Fira Code', monospace;
     min-height: 100vh;
-    padding: 2.5rem calc(#{$page-pad} + 3rem) 5rem $page-pad;
+    padding: 2.5rem $page-pad 5rem;
 }
 
 .container {
@@ -130,6 +130,8 @@ body {
     text-align: center;
     position: relative;
     z-index: 1;
+    color: #fff;
+    text-decoration: none;
 }
 
 .tooltip {
@@ -196,9 +198,67 @@ body {
         margin-top: -1px;
     }
 
-    // Rotate each arc +90° for the vertical orientation
-    .c4 { transform: rotate(270deg); }
-    .c3 { transform: rotate(0deg); }
-    .c2 { transform: rotate(180deg); }
-    .s1 .quarter-circle { transform: rotate(90deg); }
+    // Re-orient arcs for vertical spiral
+    .c4 { transform: rotate(0deg); }
+    .s1 .quarter-circle { transform: rotate(180deg); }
+}
+
+// Project detail page
+.detail {
+    .detail-image {
+        background-color: #1a1a1a;
+        margin-top: 20px;
+        padding: 40px;
+
+        img {
+            width: 100%;
+            display: block;
+        }
+    }
+
+    .detail-links {
+        display: flex;
+        gap: 30px;
+        margin-top: 20px;
+        padding-bottom: 30px;
+    }
+
+    .detail-link {
+        color: #fff;
+        font-family: 'Fira Code', monospace;
+        font-size: 14px;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        transition: opacity 0.3s;
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+
+    .detail-description {
+        margin-top: 30px;
+        font-family: 'Fira Code', monospace;
+        font-size: 14px;
+        line-height: 1.8;
+        max-width: 600px;
+        white-space: pre-wrap;
+    }
+}
+
+@media (max-width: 700px) {
+    .detail {
+        .detail-image {
+            padding: 20px;
+        }
+
+        .detail-links {
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .detail-link {
+            font-size: 12px;
+        }
+    }
 }

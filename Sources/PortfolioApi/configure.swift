@@ -23,6 +23,8 @@ public func configure(_ app: Application) async throws {
     )
     
     app.migrations.add(CreateProject())
+    app.migrations.add(MakeProjectLinksOptional())
+    app.migrations.add(MakeProjectLinksNullable())
     app.migrations.add(CreatePost())
 
     // register routes

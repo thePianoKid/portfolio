@@ -15,26 +15,33 @@
         </a>
 
         <div class="fib-canvas">
-            <div class="square s4 project-card" data-description="This is a short description of the project. This box follows the cursor around.">
+            #for(project in projects):
+            #if(isFirst):
+            <div class="square s4 project-card" data-description="#(project.description)">
                 <div class="quarter-circle c4"></div>
-                <span class="project-title">train.ai</span>
+                <a href="/projects/#(project.id)" class="project-title">#(project.title)</a>
             </div>
             <div class="fib-right">
-                <div class="square s3 project-card" data-description="This is a short description of the project. This box follows the cursor around.">
+            #elseif(index == 1):
+                <div class="square s3 project-card" data-description="#(project.description)">
                     <div class="quarter-circle c3"></div>
-                    <span class="project-title">Retell</span>
+                    <a href="/projects/#(project.id)" class="project-title">#(project.title)</a>
                 </div>
                 <div class="fib-bottom">
-                    <div class="square s2 project-card" data-description="This is a short description of the project. This box follows the cursor around.">
+            #elseif(index == 2):
+                    <div class="square s2 project-card" data-description="#(project.description)">
                         <div class="quarter-circle c2"></div>
-                        <span class="project-title">Fitness app</span>
+                        <a href="/projects/#(project.id)" class="project-title">#(project.title)</a>
                     </div>
-                    <div class="square s1 project-card" data-description="This is a short description of the project. This box follows the cursor around.">
+            #elseif(index == 3):
+                    <div class="square s1 project-card" data-description="#(project.description)">
                         <div class="quarter-circle"></div>
-                        <span class="project-title">Notion x Shopify</span>
+                        <a href="/projects/#(project.id)" class="project-title">#(project.title)</a>
                     </div>
                 </div>
             </div>
+            #endif
+            #endfor
         </div>
 
         <div class="tooltip" id="tooltip">

@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:portfolio}",
+            "name": "Debug PortfolioApi",
+            "target": "PortfolioApi",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug PortfolioApi"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:portfolio}",
+            "name": "Release PortfolioApi",
+            "target": "PortfolioApi",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release PortfolioApi"
+        }
+    ]
+}
