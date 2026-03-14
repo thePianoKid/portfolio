@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500;600;700&display=swap');
 
 $page-pad: clamp(8rem, 20vw, 24rem);
+$line-color: #fff;
+$unit: clamp(80px, 12vw, 150px);
 
 * {
     margin: 0;
@@ -47,48 +49,87 @@ body {
     margin-right: 8px;
 }
 
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    max-width: 1100px;
+// Fibonacci spiral layout
+.fib-canvas {
+    display: flex;
 }
 
-.project-card {
-    border: 2px solid #fff;
-    aspect-ratio: 2.1;
+.fib-right {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+}
+
+.fib-bottom {
+    display: flex;
+    flex-direction: row;
+}
+
+.square {
+    box-sizing: border-box;
+    border: 1px solid $line-color;
+    position: relative;
+    overflow: hidden;
+    display: flex;
     justify-content: center;
+    align-items: center;
     cursor: pointer;
     transition: background-color 0.3s;
-    position: relative;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
 }
 
-.project-card:nth-child(1) {
-    margin-top: 0;
+.s4 {
+    width: calc(#{$unit} * 3);
+    height: calc(#{$unit} * 3 - 1px);
 }
 
-.project-card:nth-child(2) {
-    margin-top: 80px;
+.s3 {
+    width: calc(#{$unit} * 2 - 1px);
+    height: calc(#{$unit} * 2);
+    margin-left: -1px;
 }
 
-.project-card:nth-child(3) {
-    margin-top: -60px;
+.s2 {
+    width: $unit;
+    height: $unit;
+    margin-left: -1px;
+    margin-top: -1px;
 }
 
-.project-card:nth-child(4) {
-    margin-top: 40px;
+.s1 {
+    width: $unit;
+    height: $unit;
+    margin-left: -1px;
+    margin-top: -1px;
 }
 
-.project-card:hover {
-    background-color: rgba(255, 255, 255, 0.05);
+.quarter-circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    width: 100%;
+    height: 100%;
+    border-top: none;
+    border-left: none;
+    box-sizing: border-box;
+    border-radius: 0 0 100% 0;
+    pointer-events: none;
 }
+
+.c2 { transform: rotate(90deg); }
+.c3 { transform: rotate(270deg) scale(1.01); }
+.c4 { transform: rotate(180deg); }
 
 .project-title {
     font-family: 'Fira Code', monospace;
-    font-size: 28px;
+    font-size: clamp(12px, 1.4vw, 22px);
     letter-spacing: 0.5px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 .tooltip {
@@ -115,4 +156,49 @@ body {
     body {
         padding: 3rem 1.5rem 4rem;
     }
+
+    // Flip spiral from horizontal (5×3) to vertical (3×5)
+    .fib-canvas {
+        flex-direction: column;
+    }
+
+    .fib-right {
+        flex-direction: row;
+    }
+
+    .fib-bottom {
+        flex-direction: column;
+    }
+
+    .s4 {
+        width: calc(#{$unit} * 3);
+        height: calc(#{$unit} * 3);
+    }
+
+    .s3 {
+        width: calc(#{$unit} * 2);
+        height: calc(#{$unit} * 2 - 1px);
+        margin-left: 0;
+        margin-top: -1px;
+    }
+
+    .s2 {
+        width: calc(#{$unit} - 1px);
+        height: $unit;
+        margin-left: -1px;
+        margin-top: -1px;
+    }
+
+    .s1 {
+        width: calc(#{$unit} - 1px);
+        height: $unit;
+        margin-left: -1px;
+        margin-top: -1px;
+    }
+
+    // Rotate each arc +90° for the vertical orientation
+    .c4 { transform: rotate(270deg); }
+    .c3 { transform: rotate(0deg); }
+    .c2 { transform: rotate(180deg); }
+    .s1 .quarter-circle { transform: rotate(90deg); }
 }

@@ -14,21 +14,26 @@
             <span class="arrow">←</span> Back to main menu
         </a>
 
-        <div class="portfolio-grid">
-            <div class="project-card" data-description="This is a short description of the project. This box follows the cursor around.">
+        <div class="fib-canvas">
+            <div class="square s4 project-card" data-description="This is a short description of the project. This box follows the cursor around.">
+                <div class="quarter-circle c4"></div>
                 <span class="project-title">train.ai</span>
             </div>
-
-            <div class="project-card" data-description="This is a short description of the project. This box follows the cursor around.">
-                <span class="project-title">Retell</span>
-            </div>
-
-            <div class="project-card" data-description="This is a short description of the project. This box follows the cursor around.">
-                <span class="project-title">Fitness app</span>
-            </div>
-
-            <div class="project-card" data-description="This is a short description of the project. This box follows the cursor around.">
-                <span class="project-title">Notion x Shopify</span>
+            <div class="fib-right">
+                <div class="square s3 project-card" data-description="This is a short description of the project. This box follows the cursor around.">
+                    <div class="quarter-circle c3"></div>
+                    <span class="project-title">Retell</span>
+                </div>
+                <div class="fib-bottom">
+                    <div class="square s2 project-card" data-description="This is a short description of the project. This box follows the cursor around.">
+                        <div class="quarter-circle c2"></div>
+                        <span class="project-title">Fitness app</span>
+                    </div>
+                    <div class="square s1 project-card" data-description="This is a short description of the project. This box follows the cursor around.">
+                        <div class="quarter-circle"></div>
+                        <span class="project-title">Notion x Shopify</span>
+                    </div>
+                </div>
             </div>
         </div>
 
